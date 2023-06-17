@@ -64,7 +64,32 @@ public class Piece : Movements
             new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.z));
         if (isType == 1 || isType == 2 || isType == 4)
         {
-            
+            for (int i = 0; i < movement.Length; i++)
+            {
+                Vector2Int searchpos = nowpos;
+                for (int j = 0; j < smManager.BOARD_SIZE; j++)
+                {
+                    searchpos += movement[i];
+                    int x = searchpos.x;
+                    int y = searchpos.y;
+                    if (x > 4 || x < 0 || y > 4 || y < 0)
+                    {
+                        continue;
+                    }
+                    
+                    if (!smManager.SearchPlayerPieceOnBoard(x, y))
+                    {
+                        GameObject mPoint = Instantiate(smManager.movablePoint, smManager.BoardToPosition(x, y),
+                            Quaternion.identity);
+                        mPoint.transform.parent = transform;
+                    }
+
+                    if (smManager.SearchEnemyPieceOnBoard(x, y) || smManager.SearchPlayerPieceOnBoard(x, y))
+                    {
+                        break;
+                    }
+                }
+            }
         }
         else
         {
@@ -78,7 +103,7 @@ public class Piece : Movements
                     continue;
                 }
                 
-                if (!smManager.SearchNowOnBoard(x, y))
+                if (!smManager.SearchPlayerPieceOnBoard(x, y))
                 {
                     GameObject mPoint = Instantiate(smManager.movablePoint, smManager.BoardToPosition(x, y),
                         Quaternion.identity);

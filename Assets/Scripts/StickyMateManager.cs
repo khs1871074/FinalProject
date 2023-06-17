@@ -52,11 +52,30 @@ public class StickyMateManager : MonoBehaviour
         }
     }
 
-    public bool SearchNowOnBoard(int x, int y)
+    public bool SearchPlayerPieceOnBoard(int x, int y)
     {
         if (board[x, y] != null)
         {
             if (board[x, y].gameObject.GetComponent<Piece>().isPlayer)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public bool SearchEnemyPieceOnBoard(int x, int y)
+    {
+        if (board[x, y] != null)
+        {
+            if (!board[x, y].gameObject.GetComponent<Piece>().isPlayer)
             {
                 return true;
             }
