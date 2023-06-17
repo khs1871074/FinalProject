@@ -8,13 +8,14 @@ public class StickyMateManager : MonoBehaviour
     private GameObject[,] board;
     private Vector3[,] boardPos;
     private int score;
+    private bool isClicked;
     
     public int BOARD_SIZE = 5;
 
     public GameObject[] playerPieces;
     public GameObject[] enemyPieces;
     public GameObject movablePoint;
-    private void Start()
+    private void Awake()
     {
         board = new GameObject[BOARD_SIZE, BOARD_SIZE];
         boardPos = new Vector3[BOARD_SIZE, BOARD_SIZE];
@@ -40,15 +41,29 @@ public class StickyMateManager : MonoBehaviour
     
     public void DestroyPiece(int x, int y)
     {
-        Destroy(board[x, y].gameObject);
-        board[x, y] = null;
+        if (board[x, y] != null)
+        {
+            if (!board[x, y].gameObject.GetComponent<Piece>().isPlayer)
+            {
+                Destroy(board[x, y].transform.gameObject);
+                board[x, y] = null;
+                score++;
+            }
+        }
     }
 
     public bool SearchNowOnBoard(int x, int y)
     {
         if (board[x, y] != null)
         {
-            return true;
+            if (board[x, y].gameObject.GetComponent<Piece>().isPlayer)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -61,9 +76,13 @@ public class StickyMateManager : MonoBehaviour
         return boardPos[x, y];
     }
 
-    public void CreateMovablePoint(int x, int y)
+    public bool GetIsClicked()
     {
-        Instantiate(movablePoint, BoardToPosition(x, y),
-            Quaternion.identity);
+        return isClicked;
+    }
+
+    public void SetIsClicked(bool click)
+    {
+        isClicked = click;
     }
 }

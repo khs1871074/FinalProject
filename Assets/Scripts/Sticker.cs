@@ -34,11 +34,6 @@ public class Sticker : MonoBehaviour
         basePos.z = transform.position.z;
     }
 
-    private void OnMouseDown()
-    {
-        
-    }
-
     private void OnMouseDrag()
     {
         if (!isAttach)
@@ -70,10 +65,11 @@ public class Sticker : MonoBehaviour
         if (HitTag == "Piece")
         {
             Piece piece = scanObject.GetComponent<Piece>();
-            if (!piece.GetIsAttached())
+            if (!piece.GetIsAttached() && piece.isPlayer)
             {
                 isAttach = true;
                 transform.position = scanObject.transform.GetChild(0).position;
+                transform.parent = scanObject.transform;
 
                 Vector3 scale = new Vector3(0.05f, 0.05f, 0.05f);
                 transform.localScale = scale;
