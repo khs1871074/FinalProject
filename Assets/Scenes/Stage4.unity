@@ -1179,7 +1179,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7961355792882713724, guid: 70668d34eeaedbc4a9245e01695a7774, type: 3}
       propertyPath: isType
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -7961355792882713724, guid: 70668d34eeaedbc4a9245e01695a7774, type: 3}
       propertyPath: smManager
@@ -3643,7 +3643,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7961355792882713724, guid: 70668d34eeaedbc4a9245e01695a7774, type: 3}
       propertyPath: isType
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7961355792882713724, guid: 70668d34eeaedbc4a9245e01695a7774, type: 3}
       propertyPath: smManager
