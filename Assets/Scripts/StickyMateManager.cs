@@ -92,15 +92,21 @@ public class StickyMateManager : MonoBehaviour
 
     private void FailedGame()
     {
-        isEnd = true;
-        failedPanel.SetActive(true);
+        if (!isEnd)
+        {
+            isEnd = true;
+            failedPanel.SetActive(true);
+        }
     }
 
     private void ClearGame()
     {
-        isEnd = true;
-        saveData.StageClear(stageNum);
-        clearPanel.SetActive(true);
+        if (!isEnd)
+        {
+            isEnd = true;
+            saveData.StageClear(stageNum);
+            clearPanel.SetActive(true);
+        }
     }
 
     public void Checkmate(int x, int y, int type)
