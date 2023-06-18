@@ -3066,6 +3066,10 @@ PrefabInstance:
       value: StickyMateManager
       objectReference: {fileID: 0}
     - target: {fileID: 6624406687554487086, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
+      propertyPath: stageNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624406687554487086, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
       propertyPath: timeText
       value: 
       objectReference: {fileID: 1056168954}
@@ -3091,7 +3095,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6624406687554487086, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
       propertyPath: movableTurn
-      value: 5
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624406687554487086, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
+      propertyPath: puzzleState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624406687554487086, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
+      propertyPath: checkmatePos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624406687554487086, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
+      propertyPath: checkmatePos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624406687554487086, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
+      propertyPath: checkmatePieceType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6624406687554487087, guid: f13390f0fd6d1ec429f292d8918f46d0, type: 3}
       propertyPath: m_RootOrder
