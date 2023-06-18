@@ -26,6 +26,7 @@ public class Sticker : MonoBehaviour
     public RaycastHit hit;
     public float RayMaxDistance = 4.00f;
     public IsType isType;
+    public StickyMateManager smManager;
 
     private void Start()
     {
@@ -36,26 +37,29 @@ public class Sticker : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (!isAttach)
+        if (!smManager.GetIsClicked())
         {
-            float distance = Camera.main.WorldToScreenPoint(transform.position).z;
-
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-            Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
-
-            transform.position = objPos;
-
-            isHit = Physics.Raycast(transform.position, transform.forward, out hit, RayMaxDistance);
-            if (isHit) //히트가 되면
+            if (!isAttach)
             {
-                var o = hit.collider.gameObject;
-                scanObject = o;
-                HitTag = o.tag;
-            }
-            else
-            {
-                scanObject = null;
-                HitTag = null;
+                float distance = Camera.main.WorldToScreenPoint(transform.position).z;
+
+                Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+                Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+                transform.position = objPos;
+
+                isHit = Physics.Raycast(transform.position, transform.forward, out hit, RayMaxDistance);
+                if (isHit) //히트가 되면
+                {
+                    var o = hit.collider.gameObject;
+                    scanObject = o;
+                    HitTag = o.tag;
+                }
+                else
+                {
+                    scanObject = null;
+                    HitTag = null;
+                }
             }
         }
     }
