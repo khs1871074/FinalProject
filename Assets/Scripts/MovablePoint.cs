@@ -6,6 +6,7 @@ using UnityEngine;
 public class MovablePoint : MonoBehaviour
 {
     private Piece piece;
+
     // Start is called before the first frame update
     void Start()
     {
