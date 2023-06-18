@@ -19,6 +19,7 @@ public class StickyMateManager : MonoBehaviour
     private int enemyCount = 0;
     private bool isClicked = false;
     private bool isEnd = false;
+    private AudioSource audio;
     
     [Header("보드크기")]
     public int BOARD_SIZE = 8;
@@ -42,8 +43,13 @@ public class StickyMateManager : MonoBehaviour
 
     [Header("클리어 화면")] public GameObject clearPanel;
     [Header("실패 화면")] public GameObject failedPanel;
+
+    [Header("클릭 사운드")] public AudioClip clickSound;
+    [Header("클리어 사운드")] public AudioClip clearSound;
+    [Header("실패 사운드")] public AudioClip failedSound;
     private void Awake()
     {
+        audio = GetComponent<AudioSource>();
         board = new GameObject[BOARD_SIZE, BOARD_SIZE];
         boardPos = new Vector3[BOARD_SIZE, BOARD_SIZE];
 
@@ -96,6 +102,9 @@ public class StickyMateManager : MonoBehaviour
         {
             isEnd = true;
             failedPanel.SetActive(true);
+            audio.Stop();
+            audio.clip = failedSound;
+            audio.Play();
         }
     }
 
@@ -106,6 +115,9 @@ public class StickyMateManager : MonoBehaviour
             isEnd = true;
             saveData.StageClear(stageNum);
             clearPanel.SetActive(true);
+            audio.Stop();
+            audio.clip = clearSound;
+            audio.Play();
         }
     }
 
@@ -138,6 +150,8 @@ public class StickyMateManager : MonoBehaviour
     
     public void AddPiece(int x, int y, GameObject nowpiece)
     {
+        audio.clip = clickSound;
+        audio.Play();
         board[x, y] = nowpiece;
     }
     
