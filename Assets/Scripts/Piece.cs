@@ -21,6 +21,10 @@ public class Piece : Movements
         Vector2Int nowpos =
             new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.z));
         smManager.AddPiece(nowpos.x, nowpos.y, transform.gameObject);
+        if (!isPlayer)
+        {
+            smManager.EnemyCounting();
+        }
     }
 
     void OnMouseDown()
@@ -56,6 +60,14 @@ public class Piece : Movements
         RemoveMovableBoardPos();
         isClicked = false;
         smManager.SetIsClicked(false);
+        if (smManager.puzzleState == 0)
+        {
+            smManager.Checkmate(x, y, isType);
+        }
+        else
+        {
+            smManager.UsedTurn();
+        }
     }
 
     private void GetMovableBoardPos()
@@ -72,7 +84,7 @@ public class Piece : Movements
                     searchpos += movement[i];
                     int x = searchpos.x;
                     int y = searchpos.y;
-                    if (x > 4 || x < 0 || y > 4 || y < 0)
+                    if (x > smManager.BOARD_SIZE - 1 || x < 0 || y > smManager.BOARD_SIZE - 1 || y < 0)
                     {
                         continue;
                     }
@@ -98,7 +110,7 @@ public class Piece : Movements
                 Vector2Int searchpos = nowpos + movement[i];
                 int x = searchpos.x;
                 int y = searchpos.y;
-                if (x > 4 || x < 0 || y > 4 || y < 0)
+                if (x > smManager.BOARD_SIZE - 1 || x < 0 || y > smManager.BOARD_SIZE - 1 || y < 0)
                 {
                     continue;
                 }
